@@ -7,6 +7,7 @@ import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import unicorn from "eslint-plugin-unicorn";
 import tseslint from "typescript-eslint";
+import deMorgan from "eslint-plugin-de-morgan";
 
 export default tseslint.config({
   extends: [
@@ -18,6 +19,7 @@ export default tseslint.config({
     importPlugin.flatConfigs.recommended,
     importPlugin.flatConfigs.typescript,
     unicorn.configs["unopinionated"],
+    deMorgan.configs.recommended,
   ],
   plugins: {
     "jsx-a11y": jsxA11y,
