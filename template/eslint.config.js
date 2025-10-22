@@ -1,5 +1,6 @@
 import eslint from "@eslint/js";
 import prettier from "eslint-config-prettier";
+import deMorgan from "eslint-plugin-de-morgan";
 import importPlugin from "eslint-plugin-import";
 import jsxA11y from "eslint-plugin-jsx-a11y";
 import promisePlugin from "eslint-plugin-promise";
@@ -7,7 +8,6 @@ import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import unicorn from "eslint-plugin-unicorn";
 import tseslint from "typescript-eslint";
-import deMorgan from "eslint-plugin-de-morgan";
 
 export default tseslint.config({
   extends: [
