@@ -113,7 +113,7 @@ async function main() {
   const validationError = validateProjectName(projectName);
   if (validationError) {
     console.error(`Error: ${validationError}`);
-    console.log('\nUsage: npm create adam-react@latest <project-name> [options]');
+    console.log('\nUsage: npm create react-adam@latest <project-name> [options]');
     console.log('\nOptions:');
     console.log('  --dir <path>       Create the project in a specific directory');
     console.log('  --with-e2e         Include E2E testing setup (Playwright + Allure)');

@@ -1,6 +1,6 @@
-# __PROJECT_NAME__
+# **PROJECT_NAME**
 
-A React application created with create-adam-react.
+A React application created with create-react-adam.
 
 ## Getting Started
 
@@ -13,7 +13,9 @@ This will start the development server at `http://localhost:5173`.
 ## Available Scripts
 
 ### `npm run itDoesNotWork`
+
 Runs basic troubleshooting checks:
+
 - Installs dependencies
 - Checks if Vite dev server is running
 - Provides helpful diagnostic information
@@ -35,6 +37,7 @@ Previews the production build locally.
 Runs ESLint to check for code quality issues.
 
 ### `npm run format`
+
 Formats all files with Prettier, organizing imports and sorting Tailwind classes.
 
 ## Tech Stack

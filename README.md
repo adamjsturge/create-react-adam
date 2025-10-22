@@ -1,11 +1,11 @@
-# create-adam-react
+# create-react-adam
 
 Create opinionated React apps with TypeScript, Vite, Wouter, and Tailwind CSS.
 
 ## Quick Start
 
 ```bash
-npx create-adam-react@latest my-app
+npx create-react-adam@latest my-app
 cd my-app
 npm run dev
 ```
@@ -15,18 +15,18 @@ npm run dev
 - `--dir <path>` - Create the project in a specific directory
 
   ```bash
-  npm create adam-react@latest my-app --dir ~/projects
+  npm create react-adam@latest my-app --dir ~/projects
   ```
 
 - `--with-e2e` - Include E2E testing setup without prompting
 
   ```bash
-  npm create adam-react@latest my-app --with-e2e
+  npm create react-adam@latest my-app --with-e2e
   ```
 
 - `--no-e2e` - Skip E2E testing setup without prompting
   ```bash
-  npm create adam-react@latest my-app --no-e2e
+  npm create react-adam@latest my-app --no-e2e
   ```
 
 ## What's Included

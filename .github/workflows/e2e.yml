@@ -24,7 +24,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "24.10.0"
-          cache: "npm"
 
       - name: Install CLI dependencies
         run: npm install
@@ -36,7 +35,7 @@ jobs:
         run: |
           mkdir -p tmp
           cd tmp
-          npx create-adam-react test-app-e2e --with-e2e
+          npx create-react-adam test-app-e2e --with-e2e
         env:
           CI: true
 
