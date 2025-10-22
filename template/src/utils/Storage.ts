@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback, useEffect, useState } from "react";
 
 interface StorageOptions {
   secondsTillExpiry?: number;
@@ -18,7 +18,7 @@ class Storage {
       }
 
       const parsed = JSON.parse(item) as StorageValue<T>;
-      
+
       if (parsed.expiry && Date.now() > parsed.expiry) {
         localStorage.removeItem(key);
         return defaultValue;
@@ -44,7 +44,7 @@ class Storage {
       };
       localStorage.setItem(key, JSON.stringify(storageValue));
     } catch (error) {
-      console.error('Failed to save to localStorage:', error);
+      console.error("Failed to save to localStorage:", error);
     }
   }
 
@@ -62,7 +62,7 @@ const storage = new Storage();
 export function useReactPersist<T>(
   key: string,
   defaultValue: T,
-  options?: StorageOptions
+  options?: StorageOptions,
 ): [T, (value: T | ((prev: T) => T)) => void] {
   const [state, setState] = useState<T>(() => storage.load(key, defaultValue));
 
@@ -70,20 +70,17 @@ export function useReactPersist<T>(
     storage.save(key, state, options);
   }, [key, state, options]);
 
-  const setPersistedState = useCallback(
-    (value: T | ((prev: T) => T)) => {
-      setState((prevState) => {
-        const newState = typeof value === 'function' 
+  const setPersistedState = useCallback((value: T | ((prev: T) => T)) => {
+    setState((prevState) => {
+      const newState =
+        typeof value === "function"
           ? (value as (prev: T) => T)(prevState)
           : value;
-        return newState;
-      });
-    },
-    []
-  );
+      return newState;
+    });
+  }, []);
 
   return [state, setPersistedState];
 }
 
 export default storage;
-
