@@ -6,6 +6,7 @@ import promisePlugin from "eslint-plugin-promise";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
+import unicorn from "eslint-plugin-unicorn";
 
 export default tseslint.config({
   extends: [
@@ -16,6 +17,7 @@ export default tseslint.config({
     promisePlugin.configs["flat/recommended"],
     importPlugin.flatConfigs.recommended,
     importPlugin.flatConfigs.typescript,
+    unicorn.configs["unopinionated"],
   ],
   plugins: {
     "jsx-a11y": jsxA11y,

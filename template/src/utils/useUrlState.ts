@@ -10,13 +10,13 @@ export function useUrlState(
 
   const params = new URLSearchParams(searchParams);
   const urlValue = params.get(key);
-  const value = urlValue ? parseInt(urlValue, 10) : defaultValue;
+  const value = urlValue ? Number.parseInt(urlValue, 10) : defaultValue;
 
   const setValue = useCallback(
     (newValue: number) => {
-      const currentParams = new URLSearchParams(window.location.search);
+      const currentParams = new URLSearchParams(globalThis.location.search);
       currentParams.set(key, newValue.toString());
-      setLocation(`${window.location.pathname}?${currentParams.toString()}`);
+      setLocation(`${globalThis.location.pathname}?${currentParams.toString()}`);
     },
     [key, setLocation],
   );
