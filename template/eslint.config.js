@@ -1,6 +1,8 @@
 import eslint from "@eslint/js";
 import prettier from "eslint-config-prettier";
+import importPlugin from "eslint-plugin-import";
 import jsxA11y from "eslint-plugin-jsx-a11y";
+import promisePlugin from "eslint-plugin-promise";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
@@ -11,6 +13,9 @@ export default tseslint.config({
     ...tseslint.configs.recommended,
     ...tseslint.configs.strict,
     prettier,
+    promisePlugin.configs["flat/recommended"],
+    importPlugin.flatConfigs.recommended,
+    importPlugin.flatConfigs.typescript,
   ],
   plugins: {
     "jsx-a11y": jsxA11y,
