@@ -1,0 +1,43 @@
+{
+  "name": "__PROJECT_NAME__",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint:check": "eslint .",
+    "lint": "eslint . --fix",
+    "format:check": "prettier --check .",
+    "format": "prettier --write .",
+    "_itDoesNotWork": "echo '\\n🔍 Troubleshooting the react project...\\n' && echo '\\n📦 Step 1: Installing Node dependencies\\n' && npm install --silent && echo '✅ Node dependencies installed successfully!' && echo '\\n🔄 Step 2: Checking if Vite dev server is running\\n' && (pgrep -f \"vite\" > /dev/null && echo '✅ Vite dev server is running') || echo '❌ Vite dev server is not running. Start it with: npm run dev' && echo '\\n✅ Basic troubleshooting complete. If issues persist, please ask for help.'",
+    "itDoesNotWork": "npm run _itDoesNotWork --silent"
+  },
+  "dependencies": {
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "react-icons": "5.5.0",
+    "wouter": "3.7.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.38.0",
+    "@tailwindcss/vite": "4.1.15",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "@vitejs/plugin-react": "5.0.4",
+    "eslint": "9.38.0",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-jsx-a11y": "6.10.2",
+    "eslint-plugin-react-hooks": "7.0.0",
+    "eslint-plugin-react-refresh": "0.4.24",
+    "prettier": "3.6.2",
+    "prettier-plugin-organize-imports": "4.1.0",
+    "prettier-plugin-tailwindcss": "0.7.1",
+    "tailwindcss": "4.1.15",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.46.2",
+    "vite": "7.1.11"
+  }
+}
+

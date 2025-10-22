@@ -1,0 +1,30 @@
+{
+  "name": "create-adam-react",
+  "version": "0.1.0",
+  "description": "Create opinionated React apps with TypeScript, Vite, Wouter, and Tailwind CSS",
+  "type": "module",
+  "bin": {
+    "create-adam-react": "./bin/index.js"
+  },
+  "files": [
+    "bin",
+    "template"
+  ],
+  "keywords": [
+    "react",
+    "vite",
+    "typescript",
+    "wouter",
+    "tailwindcss",
+    "create-react-app",
+    "scaffolding"
+  ],
+  "author": "Adam",
+  "license": "MIT",
+  "scripts": {
+    "quick-make": "npm link && cd ./tmp && npx create-adam-react test-app-$(date +%Y%m%d-%H%M%S) --with-e2e",
+    "qm": "npm run quick-make",
+    "itDoesNotWork": "echo 'Wrong Directory'"
+  }
+}
+

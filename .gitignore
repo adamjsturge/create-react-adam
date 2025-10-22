@@ -1,0 +1,6 @@
+npm-test/
+tmp/
+node_modules/
+/template/node_modules/
+/template/dist/
+/template/package-lock.json

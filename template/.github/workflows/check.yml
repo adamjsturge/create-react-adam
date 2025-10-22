@@ -1,0 +1,36 @@
+name: Template Code Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24.10.0"
+          cache: "npm"
+
+      - name: Install CLI dependencies
+        run: npm install
+
+      - name: Run TypeScript check
+        run: npx tsc --noEmit
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Run linting
+        run: npm run lint:check
+
+      - name: Run build
+        run: npm run build
