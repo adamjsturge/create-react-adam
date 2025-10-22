@@ -16,7 +16,9 @@ export function useUrlState(
     (newValue: number) => {
       const currentParams = new URLSearchParams(globalThis.location.search);
       currentParams.set(key, newValue.toString());
-      setLocation(`${globalThis.location.pathname}?${currentParams.toString()}`);
+      setLocation(
+        `${globalThis.location.pathname}?${currentParams.toString()}`,
+      );
     },
     [key, setLocation],
   );
