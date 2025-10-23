@@ -24,7 +24,9 @@
   "scripts": {
     "quick-make": "npm link && cd ./tmp && npx create-react-adam test-app-$(date +%Y%m%d-%H%M%S) --with-e2e",
     "qm": "npm run quick-make",
-    "itDoesNotWork": "echo 'Wrong Directory'"
+    "itDoesNotWork": "echo 'Wrong Directory'",
+    "cleanup": "rm -rf ./tmp && rm -rf ./template/node_modules && rm -rf ./template/dist && rm -rf ./template/package-lock.json && echo 'Template Dev Files Deleted, you must run npm install in the template directory for those features'",
+    "dev": "npm run cleanup && TIMESTAMP=$(date +%Y%m%d-%H%M%S) && npm link && cd ./tmp && npx create-react-adam test-app-$TIMESTAMP --with-e2e && cd test-app-$TIMESTAMP && npm run dev"
   }
 }
 
