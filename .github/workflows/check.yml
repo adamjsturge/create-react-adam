@@ -35,7 +35,7 @@ jobs:
         run: |
           mkdir -p tmp
           cd tmp
-          npx create-react-adam test-app-ci --no-e2e --no-utils
+          npx create-react-adam test-app-ci --no-e2e --with-utils
         env:
           CI: true
 
