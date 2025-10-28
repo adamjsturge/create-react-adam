@@ -11,6 +11,7 @@
     "lint": "eslint . --fix",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
+    "setFormatToPrecommitHook": "echo \"#!/bin/bash\nnpm run format\nexit 0\" > .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit",
     "_itDoesNotWork": "echo '\\n🔍 Troubleshooting the react project...\\n' && echo '\\n📦 Step 1: Installing Node dependencies\\n' && npm install --silent && echo '✅ Node dependencies installed successfully!' && echo '\\n🔄 Step 2: Checking if Vite dev server is running\\n' && (pgrep -f \"vite\" > /dev/null && echo '✅ Vite dev server is running') || echo '❌ Vite dev server is not running. Start it with: npm run dev' && echo '\\n✅ Basic troubleshooting complete. If issues persist, please ask for help.'",
     "itDoesNotWork": "npm run _itDoesNotWork --silent"
   },
