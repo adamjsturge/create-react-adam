@@ -1,21 +1,22 @@
 import { DependencyList, useEffect } from "react";
 
 export function useInternetConnected(
-    callback: () => void,
-    dependencies: DependencyList = [],
+  callback: () => void,
+  dependencies: DependencyList = [],
 ) {
-    useEffect(() => {
-        if (navigator.onLine) {
-            callback();
-        }
-        const handleOnline = () => {
-            callback();
-        };
+  useEffect(() => {
+    if (navigator.onLine) {
+      callback();
+    }
+    const handleOnline = () => {
+      callback();
+    };
 
-        window.addEventListener("online", handleOnline);
+    globalThis.addEventListener("online", handleOnline);
 
-        return () => {
-            window.removeEventListener("online", handleOnline);
-        };
-    }, dependencies);
+    return () => {
+      globalThis.removeEventListener("online", handleOnline);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, dependencies);
 }

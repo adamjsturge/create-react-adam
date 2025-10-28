@@ -55,7 +55,14 @@ async function copyDirectory(src, dest, excludePaths = []) {
     const srcPath = join(src, entry.name);
     const destPath = join(dest, entry.name);
 
-    if (excludePaths.some(excludePath => srcPath.includes(excludePath))) {
+    const shouldExclude = excludePaths.some(excludePath => {
+      if (entry.isDirectory() && entry.name === excludePath) {
+        return true;
+      }
+      return srcPath.endsWith(`/${excludePath}`) || srcPath.endsWith(`\\${excludePath}`);
+    });
+
+    if (shouldExclude) {
       continue;
     }
 
@@ -93,8 +100,7 @@ function runCommand(command, args, cwd) {
   return new Promise((resolve, reject) => {
     const child = spawn(command, args, {
       cwd,
-      stdio: 'inherit',
-      shell: true
+      stdio: 'inherit'
     });
 
     child.on('close', (code) => {
@@ -165,6 +171,22 @@ async function main() {
   }
 
   await copyDirectory(templatePath, projectPath, excludePaths);
+
+  if (!includeUtils) {
+    await copyFile(
+      join(projectPath, 'src', 'pages', 'Home', 'index.no-utils.tsx'),
+      join(projectPath, 'src', 'pages', 'Home', 'index.tsx')
+    );
+    await copyFile(
+      join(projectPath, 'src', 'pages', 'About', 'index.no-utils.tsx'),
+      join(projectPath, 'src', 'pages', 'About', 'index.tsx')
+    );
+    await rm(join(projectPath, 'src', 'pages', 'Home', 'index.no-utils.tsx'));
+    await rm(join(projectPath, 'src', 'pages', 'About', 'index.no-utils.tsx'));
+  } else {
+    await rm(join(projectPath, 'src', 'pages', 'Home', 'index.no-utils.tsx'));
+    await rm(join(projectPath, 'src', 'pages', 'About', 'index.no-utils.tsx'));
+  }
 
   const replacements = {
     '__PROJECT_NAME__': projectName
