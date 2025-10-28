@@ -118,6 +118,8 @@ async function main() {
     console.log('  --dir <path>       Create the project in a specific directory');
     console.log('  --with-e2e         Include E2E testing setup (Playwright + Allure)');
     console.log('  --no-e2e           Skip E2E testing setup');
+    console.log('  --with-utils       Include utility functions (classNames, Storage, useUrlState)');
+    console.log('  --no-utils         Skip utility functions');
     process.exit(1);
   }
 
@@ -139,6 +141,16 @@ async function main() {
     includeE2E = answer.toLowerCase() === 'y' || answer.toLowerCase() === 'yes';
   }
 
+  let includeUtils = false;
+  if (flags['with-utils']) {
+    includeUtils = true;
+  } else if (flags['no-utils']) {
+    includeUtils = false;
+  } else {
+    const answer = await askQuestion('Include utility functions (classNames, Storage, useUrlState)? (y/N): ');
+    includeUtils = answer.toLowerCase() === 'y' || answer.toLowerCase() === 'yes';
+  }
+
   console.log(`Creating a new Adam React app in ${projectPath}...`);
 
   const templatePath = join(__dirname, '..', 'template');
@@ -146,6 +158,10 @@ async function main() {
   
   if (!includeE2E) {
     excludePaths.push('e2e', 'playwright.config.ts', '.e2e-deps.json');
+  }
+
+  if (!includeUtils) {
+    excludePaths.push('utils');
   }
 
   await copyDirectory(templatePath, projectPath, excludePaths);
