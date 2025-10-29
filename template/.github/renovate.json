@@ -1,0 +1,26 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "config:recommended"
+    ],
+    "packageRules": [
+        {
+            "matchManagers": ["npm"],
+            "groupName": "JavaScript Dependencies",
+            "groupSlug": "javascript-dependencies",
+            "schedule": ["at any time"]
+        },
+        {
+            "matchManagers": ["github-actions"],
+            "groupName": "GitHub Actions Dependencies",
+            "groupSlug": "github-actions-dependencies",
+            "schedule": ["at any time"]
+        },
+        {
+            "matchManagers": ["nvm"],
+            "groupName": "Node Version Manager Dependencies",
+            "groupSlug": "nvm-dependencies",
+            "schedule": ["at any time"]
+        }
+    ]
+}
