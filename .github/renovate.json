@@ -10,6 +10,12 @@
             "groupName": "template-dependencies",
             "groupSlug": "template",
             "schedule": ["at any time"]
+        },
+        {
+            "matchManagers": ["github-actions"],
+            "groupName": "github-actions-dependencies",
+            "groupSlug": "github-actions",
+            "schedule": ["at any time"]
         }
     ]
 }
