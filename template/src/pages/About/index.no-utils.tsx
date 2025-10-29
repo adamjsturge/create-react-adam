@@ -2,21 +2,21 @@ import { Link } from "wouter";
 
 const About = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-brand-background">
+    <div className="bg-brand-background flex min-h-screen flex-col items-center justify-center">
       <div className="mx-auto max-w-2xl px-4 text-center">
-        <h1 className="mb-6 text-5xl font-bold text-brand-black">
+        <h1 className="text-brand-black mb-6 text-5xl font-bold">
           About This Project
         </h1>
-        <p className="mb-8 text-xl text-brand-gray">
+        <p className="text-brand-gray mb-8 text-xl">
           This is a starter template created with create-react-adam. It includes
           everything you need to build modern React applications.
         </p>
 
         <div className="mb-8 text-left">
-          <h2 className="mb-4 text-2xl font-semibold text-brand-black">
+          <h2 className="text-brand-black mb-4 text-2xl font-semibold">
             Included Tools:
           </h2>
-          <ul className="space-y-2 text-brand-gray">
+          <ul className="text-brand-gray space-y-2">
             <li>⚛️ React 19 with TypeScript</li>
             <li>⚡ Vite for fast development</li>
             <li>🎨 Tailwind CSS for styling</li>
@@ -27,7 +27,7 @@ const About = () => {
 
         <Link
           href="/"
-          className="rounded-lg bg-brand-primary px-6 py-3 text-brand-white transition-colors hover:bg-brand-primaryHover"
+          className="bg-brand-primary text-brand-white hover:bg-brand-primaryHover rounded-lg px-6 py-3 transition-colors"
         >
           Back to Home
         </Link>

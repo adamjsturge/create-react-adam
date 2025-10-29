@@ -1,18 +1,18 @@
 import { Link } from "wouter";
 
 const NotFound = () => (
-  <div className="flex min-h-screen flex-col items-center justify-center bg-brand-background">
+  <div className="bg-brand-background flex min-h-screen flex-col items-center justify-center">
     <div className="text-center">
-      <h1 className="text-9xl font-bold text-brand-black">404</h1>
-      <p className="mt-4 text-2xl font-semibold text-brand-black">
+      <h1 className="text-brand-black text-9xl font-bold">404</h1>
+      <p className="text-brand-black mt-4 text-2xl font-semibold">
         Page Not Found
       </p>
-      <p className="mt-2 text-brand-gray">
+      <p className="text-brand-gray mt-2">
         The page you're looking for doesn't exist.
       </p>
       <Link
         href="/"
-        className="mt-6 inline-block rounded-lg bg-brand-primary px-6 py-3 text-brand-white transition-colors hover:bg-brand-primaryHover"
+        className="bg-brand-primary text-brand-white hover:bg-brand-primaryHover mt-6 inline-block rounded-lg px-6 py-3 transition-colors"
       >
         Go Home
       </Link>
