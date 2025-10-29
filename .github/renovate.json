@@ -3,19 +3,14 @@
     "extends": [
         "config:recommended"
     ],
+    "platformAutomerge": true,
     "packageRules": [
         {
-            "matchManagers": ["npm"],
-            "matchFileNames": ["template/package.json"],
-            "groupName": "template-dependencies",
-            "groupSlug": "template",
-            "schedule": ["at any time"]
-        },
-        {
-            "matchManagers": ["github-actions"],
-            "groupName": "github-actions-dependencies",
-            "groupSlug": "github-actions",
-            "schedule": ["at any time"]
+            "matchManagers": ["npm", "github-actions", "nvm"],
+            "groupName": "All Dependencies",
+            "groupSlug": "all-dependencies",
+            "schedule": ["at any time"],
+            "automerge": true
         }
     ]
 }
