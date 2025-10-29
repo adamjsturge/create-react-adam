@@ -1,0 +1,15 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "config:recommended"
+    ],
+    "packageRules": [
+        {
+            "matchManagers": ["npm"],
+            "matchFileNames": ["template/package.json"],
+            "groupName": "template-dependencies",
+            "groupSlug": "template",
+            "schedule": ["at any time"]
+        }
+    ]
+}
