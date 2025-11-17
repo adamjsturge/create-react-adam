@@ -1,6 +1,6 @@
 {
   "name": "create-react-adam",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Create opinionated React apps with TypeScript, Vite, Wouter, and Tailwind CSS",
   "type": "module",
   "bin": {
