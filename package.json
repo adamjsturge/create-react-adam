@@ -21,6 +21,17 @@
   ],
   "author": "Adam",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamjsturge/create-react-adam.git"
+  },
+  "bugs": {
+    "url": "https://github.com/adamjsturge/create-react-adam/issues"
+  },
+  "homepage": "https://github.com/adamjsturge/create-react-adam#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "quick-make": "npm link && cd ./tmp && npx create-react-adam test-app-$(date +%Y%m%d-%H%M%S) --with-e2e --with-utils",
     "qm": "npm run quick-make",
