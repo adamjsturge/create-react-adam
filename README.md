@@ -5,7 +5,7 @@ Create opinionated React apps with TypeScript, Vite, Wouter, and Tailwind CSS.
 ## Quick Start
 
 ```bash
-npx create-react-adam@latest my-app
+npx create-react-adam@latest my-app --with-e2e --with-utils
 cd my-app
 npm run dev
 ```
