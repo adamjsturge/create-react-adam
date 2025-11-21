@@ -13,7 +13,10 @@
     "format": "prettier --write .",
     "setFormatToPrecommitHook": "echo \"#!/bin/bash\\n\\nSTAGED_JS_FILES=\\$(git diff --cached --name-only --diff-filter=ACM | grep -E '\\\\.(tsx?|js)\\$' || true)\\n\\nif [ -n \\\"\\$STAGED_JS_FILES\\\" ]; then\\n  echo \\\"\\$STAGED_JS_FILES\\\" | xargs npx prettier --write --ignore-unknown || exit 1\\n  echo \\\"\\$STAGED_JS_FILES\\\" | xargs npx eslint --fix || exit 1\\n  echo \\\"\\$STAGED_JS_FILES\\\" | xargs git add\\nfi\" > .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit",
     "_itDoesNotWork": "echo '\\n🔍 Troubleshooting the react project...\\n' && echo '\\n📦 Step 1: Installing Node dependencies\\n' && npm install --silent && echo '✅ Node dependencies installed successfully!' && echo '\\n🔄 Step 2: Checking if Vite dev server is running\\n' && (pgrep -f \"vite\" > /dev/null && echo '✅ Vite dev server is running') || echo '❌ Vite dev server is not running. Start it with: npm run dev' && echo '\\n✅ Basic troubleshooting complete. If issues persist, please ask for help.'",
-    "itDoesNotWork": "npm run _itDoesNotWork --silent"
+    "itDoesNotWork": "npm run _itDoesNotWork --silent",
+    "test:e2e": "cd e2e && playwright test",
+    "test:e2e:ui": "cd e2e && playwright test --ui",
+    "test:e2e:report": "cd e2e && allure generate ./allure-results --clean && allure open"
   },
   "dependencies": {
     "react": "19.2.0",
