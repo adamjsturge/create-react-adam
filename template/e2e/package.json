@@ -9,8 +9,8 @@
     "test:e2e:report": "allure generate ./allure-results --clean && allure open"
   },
   "devDependencies": {
-    "@playwright/test": "1.48.0",
-    "allure-playwright": "3.0.3"
+    "@playwright/test": "1.56.1",
+    "allure-playwright": "3.4.2"
   }
 }
 
