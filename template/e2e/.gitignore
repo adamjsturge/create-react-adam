@@ -1,0 +1,13 @@
+# Dependencies
+node_modules
+
+# Test results
+test-results
+playwright-report
+allure-results
+allure-report
+playwright/.cache
+
+# Logs
+*.log
+

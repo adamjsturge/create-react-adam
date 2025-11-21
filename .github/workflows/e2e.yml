@@ -40,11 +40,11 @@ jobs:
           CI: true
 
       - name: Install Playwright browsers
-        working-directory: ./tmp/test-app-e2e/e2e/
+        working-directory: ./tmp/test-app-e2e/e2e
         run: npx playwright install --with-deps chromium
 
       - name: Run E2E tests
-        working-directory: ./tmp/test-app-e2e/e2e/
+        working-directory: ./tmp/test-app-e2e/e2e
         run: npm run test:e2e
 
       - name: Upload Playwright report
@@ -52,7 +52,7 @@ jobs:
         if: always()
         with:
           name: playwright-report
-          path: tmp/test-app-e2e/e2e/playwright-report/
+          path: tmp/test-app-e2e/e2e/playwright-report
           retention-days: 30
 
       - name: Upload Allure results
@@ -60,5 +60,5 @@ jobs:
         if: always()
         with:
           name: allure-results
-          path: tmp/test-app-e2e/e2e/allure-results/
+          path: tmp/test-app-e2e/e2e/allure-results
           retention-days: 30

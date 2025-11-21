@@ -1,12 +1,12 @@
 import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
-  testDir: "./e2e",
+  testDir: ".",
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: [["html"], ["allure-playwright"]],
+  reporter: [["line"], ["allure-playwright"]],
   use: {
     baseURL: "http://localhost:5173",
     trace: "on-first-retry",
@@ -21,5 +21,7 @@ export default defineConfig({
     command: "npm run dev",
     url: "http://localhost:5173",
     reuseExistingServer: !process.env.CI,
+    cwd: "..",
   },
 });
+

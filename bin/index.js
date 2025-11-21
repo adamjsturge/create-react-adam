@@ -163,7 +163,7 @@ async function main() {
   const excludePaths = [];
   
   if (!includeE2E) {
-    excludePaths.push('e2e', 'playwright.config.ts', '.e2e-deps.json');
+    excludePaths.push('e2e');
   }
 
   if (!includeUtils) {
@@ -196,22 +196,13 @@ async function main() {
   await replaceInFile(join(projectPath, 'index.html'), replacements);
   await replaceInFile(join(projectPath, 'README.md'), replacements);
 
-  if (includeE2E) {
-    const e2eDepsPath = join(projectPath, '.e2e-deps.json');
-    const packageJsonPath = join(projectPath, 'package.json');
-    
-    const e2eDeps = JSON.parse(await readFile(e2eDepsPath, 'utf-8'));
-    const packageJson = JSON.parse(await readFile(packageJsonPath, 'utf-8'));
-    
-    packageJson.scripts = { ...packageJson.scripts, ...e2eDeps.scripts };
-    packageJson.devDependencies = { ...packageJson.devDependencies, ...e2eDeps.devDependencies };
-    
-    await writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2) + '\n', 'utf-8');
-    await rm(e2eDepsPath);
-  }
-
   console.log('\nInstalling dependencies...');
   await runCommand('npm', ['install'], projectPath);
+
+  if (includeE2E) {
+    console.log('\nInstalling E2E dependencies...');
+    await runCommand('npm', ['install'], join(projectPath, 'e2e'));
+  }
 
   console.log('\n✓ Success! Created', projectName, 'at', projectPath);
   console.log('\nInside that directory, you can run several commands:\n');
