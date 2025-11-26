@@ -172,6 +172,13 @@ async function main() {
 
   await copyDirectory(templatePath, projectPath, excludePaths);
 
+  // Rename gitignore to .gitignore (npm doesn't publish .gitignore files)
+  const gitignorePath = join(projectPath, 'gitignore');
+  if (existsSync(gitignorePath)) {
+    await copyFile(gitignorePath, join(projectPath, '.gitignore'));
+    await rm(gitignorePath);
+  }
+
   if (!includeUtils) {
     await copyFile(
       join(projectPath, 'src', 'pages', 'Home', 'index.no-utils.tsx'),
