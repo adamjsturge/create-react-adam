@@ -1,0 +1,30 @@
+template/src/utils/useUrlState.ts
+  s_7ab5b4448ca790::t_0602abaabca5af 23
+template/eslint.config.no-webp.js
+  s_7ab5b4448ca790::t_86612b433888d5 4
+package.json
+  s_7ab5b4448ca790::t_8e1cca3cc4aa70 3
+template/eslint.config.js
+  s_7ab5b4448ca790::t_235358ea4a01f3 4
+template/package.json
+  s_7ab5b4448ca790::t_e064644b986283 35
+  s_7ab5b4448ca790::t_943e9efea7b6a1 47
+  s_7ab5b4448ca790::t_345453372cdcdd 50-54
+  s_7ab5b4448ca790::t_f2d64ebfa801b0 37
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "a54da91bc5822b2a0d1ed93c65d821caa2144d4a",
+  "prompts": {},
+  "sessions": {
+    "s_7ab5b4448ca790": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "332b59e7-733a-43e2-8cea-4d4c485b523d",
+        "model": "claude-fable-5"
+      },
+      "human_author": "adamjsturge <adamjsturge@gmail.com>"
+    }
+  }
+}
