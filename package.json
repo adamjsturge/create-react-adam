@@ -1,6 +1,6 @@
 {
   "name": "create-react-adam",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Create opinionated React apps with TypeScript, Vite, Wouter, and Tailwind CSS",
   "type": "module",
   "bin": {
@@ -8,7 +8,10 @@
   },
   "files": [
     "bin",
-    "template"
+    "template",
+    "!template/package-lock.json",
+    "!template/node_modules",
+    "!template/dist"
   ],
   "keywords": [
     "react",
@@ -38,6 +41,8 @@
     "itDoesNotWork": "echo 'Wrong Directory'",
     "cleanup": "rm -rf ./tmp/* && rm -rf ./template/node_modules && rm -rf ./template/dist && rm -rf ./template/package-lock.json && echo 'Template Dev Files Deleted, you must run npm install in the template directory for those features'",
     "dev": "npm run cleanup && TIMESTAMP=$(date +%Y%m%d-%H%M%S) && npm link && cd ./tmp && npx create-react-adam test-app-$TIMESTAMP --with-e2e --with-utils && cd test-app-$TIMESTAMP && npm run dev"
+  },
+  "dependencies": {
+    "@clack/prompts": "1.7.0"
   }
 }
-

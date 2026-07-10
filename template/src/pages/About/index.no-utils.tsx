@@ -1,6 +1,11 @@
+import { useEffect } from "react";
 import { Link } from "wouter";
 
 const About = () => {
+  useEffect(() => {
+    document.title = "About | __PROJECT_NAME__";
+  }, []);
+
   return (
     <div className="bg-brand-background flex min-h-screen flex-col items-center justify-center">
       <div className="mx-auto max-w-2xl px-4 text-center">

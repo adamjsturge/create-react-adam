@@ -1,23 +1,30 @@
+import { useEffect } from "react";
 import { Link } from "wouter";
 
-const NotFound = () => (
-  <div className="bg-brand-background flex min-h-screen flex-col items-center justify-center">
-    <div className="text-center">
-      <h1 className="text-brand-black text-9xl font-bold">404</h1>
-      <p className="text-brand-black mt-4 text-2xl font-semibold">
-        Page Not Found
-      </p>
-      <p className="text-brand-gray mt-2">
-        The page you're looking for doesn't exist.
-      </p>
-      <Link
-        href="/"
-        className="bg-brand-primary text-brand-white hover:bg-brand-primaryHover mt-6 inline-block rounded-lg px-6 py-3 transition-colors"
-      >
-        Go Home
-      </Link>
+const NotFound = () => {
+  useEffect(() => {
+    document.title = "Page Not Found | __PROJECT_NAME__";
+  }, []);
+
+  return (
+    <div className="bg-brand-background flex min-h-screen flex-col items-center justify-center">
+      <div className="text-center">
+        <h1 className="text-brand-black text-9xl font-bold">404</h1>
+        <p className="text-brand-black mt-4 text-2xl font-semibold">
+          Page Not Found
+        </p>
+        <p className="text-brand-gray mt-2">
+          The page you're looking for doesn't exist.
+        </p>
+        <Link
+          href="/"
+          className="bg-brand-primary text-brand-white hover:bg-brand-primaryHover mt-6 inline-block rounded-lg px-6 py-3 transition-colors"
+        >
+          Go Home
+        </Link>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default NotFound;

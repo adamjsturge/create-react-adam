@@ -1,19 +1,30 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/InterVariable.woff2") format("woff2");
+}
+
 @theme {
-  --font-sans: "Inter", sans-serif;
+  --font-sans:
+    "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
-  --color-brand-primary: #3b82f6;
-  --color-brand-primaryHover: #2563eb;
-  --color-brand-primaryActive: #1d4ed8;
+  /* Brand colors are chosen to meet WCAG AA contrast (>= 4.5:1) with white
+     text; keep that in mind when changing them. */
+  --color-brand-primary: #2563eb;
+  --color-brand-primaryHover: #1d4ed8;
+  --color-brand-primaryActive: #1e40af;
 
-  --color-brand-secondary: #8b5cf6;
-  --color-brand-secondaryHover: #7c3aed;
-  --color-brand-secondaryActive: #6d28d9;
+  --color-brand-secondary: #7c3aed;
+  --color-brand-secondaryHover: #6d28d9;
+  --color-brand-secondaryActive: #5b21b6;
 
-  --color-brand-success: #22c55e;
+  --color-brand-success: #15803d;
   --color-brand-warning: #f59e0b;
-  --color-brand-danger: #ef4444;
+  --color-brand-danger: #dc2626;
 
   --color-brand-black: #0f172a;
   --color-brand-white: #ffffff;
@@ -26,4 +37,11 @@
   --color-brand-border: #cbd5e1;
 
   --color-brand-disabled: #94a3b8;
+}
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-brand-primary);
+    outline-offset: 2px;
+  }
 }

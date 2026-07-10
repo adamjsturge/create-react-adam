@@ -1,6 +1,14 @@
+import { useEffect, useState } from "react";
 import { Link } from "wouter";
+import Button from "../../components/Button";
 
 const Home = () => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    document.title = "__PROJECT_NAME__";
+  }, []);
+
   return (
     <div className="bg-brand-background flex min-h-screen flex-col items-center justify-center">
       <div className="mx-auto max-w-2xl px-4 text-center">
@@ -11,7 +19,7 @@ const Home = () => {
           Built with React, TypeScript, Vite, Wouter, and Tailwind CSS
         </p>
 
-        <div className="mb-8">
+        <div className="mb-8 space-y-6">
           <div className="bg-brand-white rounded-lg p-6 shadow-md">
             <h2 className="text-brand-black mb-4 text-2xl font-semibold">
               Get Started
@@ -26,6 +34,34 @@ const Home = () => {
             <p className="text-brand-gray">
               This is a clean starting point for your React application.
             </p>
+          </div>
+
+          <div className="bg-brand-white rounded-lg p-6 shadow-md">
+            <h2 className="text-brand-black mb-4 text-2xl font-semibold">
+              Counter
+            </h2>
+            <p className="text-brand-gray mb-4">
+              A simple counter using the shared Button component
+            </p>
+            <div className="flex items-center justify-center gap-4">
+              <Button
+                variant="danger"
+                aria-label="Decrease counter"
+                onClick={() => setCount(count - 1)}
+              >
+                -
+              </Button>
+              <span className="text-brand-black text-3xl font-bold">
+                {count}
+              </span>
+              <Button
+                variant="success"
+                aria-label="Increase counter"
+                onClick={() => setCount(count + 1)}
+              >
+                +
+              </Button>
+            </div>
           </div>
         </div>
 
