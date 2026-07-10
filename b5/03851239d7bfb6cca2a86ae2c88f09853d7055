@@ -1,0 +1,23 @@
+template/eslint.config.js
+  s_0e0863910b37f6::t_32355faac0587b 29
+  s_0e0863910b37f6::t_02523650d999d5 11
+  s_0e0863910b37f6::t_f8e92d915d04f3 53
+template/README.md
+  s_0e0863910b37f6::t_ee8d8393259a74 98
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "b503851239d7bfb6cca2a86ae2c88f09853d7055",
+  "prompts": {},
+  "sessions": {
+    "s_0e0863910b37f6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d4c50452-9bb4-43e2-bb7c-92a9777b04de",
+        "model": "claude-fable-5"
+      },
+      "human_author": "adamjsturge <adamjsturge@gmail.com>"
+    }
+  }
+}
