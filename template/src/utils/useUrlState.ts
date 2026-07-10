@@ -20,7 +20,7 @@ export function useUrlState(
   const urlValue = params.get(key);
   const value = urlValue
     ? typeof defaultValue === "number"
-      ? Number.parseInt(urlValue, 10)
+      ? Number(urlValue)
       : urlValue
     : defaultValue;
 
