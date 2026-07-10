@@ -1,0 +1,124 @@
+name: Scaffold Integrity
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "template/**"
+      - "bin/**"
+      - "scripts/**"
+      - "package.json"
+      - ".github/workflows/scaffold-integrity.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "template/**"
+      - "bin/**"
+      - "scripts/**"
+      - "package.json"
+      - ".github/workflows/scaffold-integrity.yml"
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - combo: full
+            flags: "--yes"
+          - combo: bare
+            flags: "--no-e2e --no-utils --no-lighthouse --no-webp-lint"
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24.18.0"
+
+      - name: Install CLI dependencies
+        run: npm install
+
+      # Scaffold from the packed tarball, not npm link, so this also catches
+      # packaging regressions (npm silently strips nested dotfiles, etc.).
+      - name: Pack CLI tarball
+        run: npm pack
+
+      - name: Scaffold ${{ matrix.combo }} app from tarball
+        run: |
+          TARBALL=$(ls "$PWD"/create-react-adam-*.tgz)
+          mkdir -p tmp
+          cd tmp
+          npx --yes --package="$TARBALL" create-react-adam app-${{ matrix.combo }} ${{ matrix.flags }}
+        env:
+          CI: true
+
+      - name: Verify scaffold shape
+        run: node scripts/verify-scaffold.mjs tmp/app-${{ matrix.combo }} ${{ matrix.combo }}
+
+      - name: Run TypeScript check
+        working-directory: tmp/app-${{ matrix.combo }}
+        run: npx tsc --noEmit
+
+      - name: Check formatting
+        working-directory: tmp/app-${{ matrix.combo }}
+        run: npm run format:check
+
+      - name: Run linting
+        working-directory: tmp/app-${{ matrix.combo }}
+        run: npm run lint:check
+
+      - name: Run build
+        working-directory: tmp/app-${{ matrix.combo }}
+        run: npm run build
+
+      - name: WebP rule blocks non-WebP images
+        if: matrix.combo == 'full'
+        working-directory: tmp/app-full
+        run: |
+          echo 'export const smoke = "/images/hero.png";' > src/webp-smoke.ts
+          if npm run lint:check > /dev/null 2>&1; then
+            echo "lint:check passed but should have failed on a .png reference"
+            exit 1
+          fi
+          rm src/webp-smoke.ts
+          echo "WebP rule correctly rejected a .png reference"
+
+  lighthouse:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24.18.0"
+
+      - name: Install CLI dependencies
+        run: npm install
+
+      - name: Pack CLI tarball
+        run: npm pack
+
+      - name: Scaffold app from tarball
+        run: |
+          TARBALL=$(ls "$PWD"/create-react-adam-*.tgz)
+          mkdir -p tmp
+          cd tmp
+          npx --yes --package="$TARBALL" create-react-adam app-lighthouse --yes
+        env:
+          CI: true
+
+      - name: Build
+        working-directory: tmp/app-lighthouse
+        run: npm run build
+
+      # Hold the template to the same budgets scaffolded projects get:
+      # accessibility >= 95, SEO >= 95, performance >= 85 (lighthouserc.json).
+      - name: Run Lighthouse against the template's own budgets
+        working-directory: tmp/app-lighthouse
+        run: npx --yes @lhci/cli@0.15.x autorun
