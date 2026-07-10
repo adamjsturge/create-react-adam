@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link } from "wouter";
 import Button from "../../components/Button";
+import PreloadLink from "../../components/PreloadLink";
 
 const Home = () => {
   const [count, setCount] = useState(0);
@@ -66,12 +66,12 @@ const Home = () => {
         </div>
 
         <div className="flex justify-center gap-4">
-          <Link
+          <PreloadLink
             href="/about"
             className="bg-brand-primary text-brand-white hover:bg-brand-primaryHover rounded-lg px-6 py-3 transition-colors"
           >
             About Page
-          </Link>
+          </PreloadLink>
           <a
             href="https://react.dev"
             target="_blank"

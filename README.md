@@ -62,7 +62,10 @@ Every generated project starts with:
 
 - **Self-hosted Inter font** - variable `woff2` served from `public/fonts/`
   with `font-display: swap` and a preload hint; no third-party font requests
-- **Route-level code splitting** - pages load via `React.lazy` + `Suspense`
+- **Route-level code splitting with preloading** - pages load via
+  `React.lazy` + `Suspense`; chunks preload on link hover/focus/touch and an
+  idle prefetcher warms the rest after first paint (documented in the
+  generated README, easy to remove)
 - **SEO-ready `index.html`** - meta description, Open Graph and Twitter card
   tags, theme-color, plus a `public/robots.txt`
 - **Accessible shell** - skip-to-content link, `<main>` landmark, visible

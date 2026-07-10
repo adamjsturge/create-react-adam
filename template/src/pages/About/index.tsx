@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { Link } from "wouter";
 import Button from "../../components/Button";
+import PreloadLink from "../../components/PreloadLink";
 import { useReactPersist } from "../../utils/Storage";
 import { useUrlState } from "../../utils/useUrlState";
 
@@ -93,12 +93,12 @@ const About = () => {
             <li>✨ ESLint & Prettier configured</li>
           </ul>
         </div>
-        <Link
+        <PreloadLink
           href="/"
           className="bg-brand-primary text-brand-white hover:bg-brand-primaryHover rounded-lg px-6 py-3 transition-colors"
         >
           Back to Home
-        </Link>
+        </PreloadLink>
       </div>
     </div>
   );

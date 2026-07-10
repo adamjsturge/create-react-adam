@@ -53,10 +53,11 @@ Vite dev server is running, and prints diagnostic information.
 ```
 src/
 ├── pages/          # Route pages (Home, About, NotFound)
-├── components/     # Reusable components
+├── components/     # Reusable components (Button, PreloadLink)
 ├── types/          # Shared TypeScript types
 ├── utils/          # Utility functions (if included)
 ├── App.tsx         # Routing, skip link, <main> landmark
+├── routes.ts       # Route import map + preload helpers
 ├── main.tsx        # Entry point
 └── app.css         # Tailwind theme + base styles
 ```
@@ -67,14 +68,54 @@ code-split with `React.lazy`, and each page sets its own `document.title`.
 ## Adding New Pages
 
 1. Create a new component in `src/pages/`
-2. Add a lazy import and route in `src/App.tsx`
+2. Add its import thunk to `src/routes.ts` (this both registers it for
+   preloading and gives `App.tsx` its lazy import)
+3. Add a lazy component and route in `src/App.tsx`
 
 ```tsx
-const NewPage = lazy(() => import("./pages/NewPage"));
+// src/routes.ts
+export const routeImports: Record<string, PageLoader> = {
+  // ...
+  "/new": () => import("./pages/NewPage"),
+};
+
+// src/App.tsx
+const NewPage = lazy(routeImports["/new"]);
 
 // In the Switch component:
 <Route path="/new" component={NewPage} />;
 ```
+
+4. Link to it with `<PreloadLink href="/new">` so the chunk preloads on
+   hover/focus/touch (wouter's plain `<Link>` works too, just without the
+   preload).
+
+## Route Preloading
+
+Pages are lazy-loaded, so without preloading every navigation waits for a
+network round trip. The template closes that gap in three layers:
+
+1. **One import map** (`src/routes.ts`): the router and the preloaders share
+   the same import thunks, and dynamic imports dedupe by module — so a
+   preloaded chunk is never downloaded twice.
+2. **Preload on intent** (`src/components/PreloadLink.tsx`): links fire the
+   target page's import on hover, focus, or touch. Hover-to-click is
+   typically 200-400ms — usually enough for the chunk to arrive first.
+3. **Idle backstop** (`preloadAllRoutesWhenIdle` in `src/routes.ts`, called
+   from `App.tsx`): after the window `load` event, remaining chunks are
+   fetched one at a time during idle periods. It never competes with
+   first-paint resources (so Lighthouse is unaffected) and skips users on
+   data-saver or 2G connections.
+
+`App.tsx` also routes against a `useDeferredValue`-deferred location, so the
+previous page stays painted until the next page is ready instead of flashing
+the blank `Suspense` fallback. Preloading makes navigation fast; the deferred
+location makes it smooth.
+
+**To remove preloading**, follow the steps in the header comment of
+`src/routes.ts` — in short: inline the imports back into `lazy()` in
+`App.tsx`, swap `<PreloadLink>` back to wouter's `<Link>`, and delete
+`src/routes.ts` and `src/components/PreloadLink.tsx`.
 
 ## Performance, SEO, and Accessibility
 

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link } from "wouter";
+import PreloadLink from "../../components/PreloadLink";
 
 const About = () => {
   useEffect(() => {
@@ -30,12 +30,12 @@ const About = () => {
           </ul>
         </div>
 
-        <Link
+        <PreloadLink
           href="/"
           className="bg-brand-primary text-brand-white hover:bg-brand-primaryHover rounded-lg px-6 py-3 transition-colors"
         >
           Back to Home
-        </Link>
+        </PreloadLink>
       </div>
     </div>
   );

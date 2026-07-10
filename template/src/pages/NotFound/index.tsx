@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link } from "wouter";
+import PreloadLink from "../../components/PreloadLink";
 
 const NotFound = () => {
   useEffect(() => {
@@ -16,12 +16,12 @@ const NotFound = () => {
         <p className="text-brand-gray mt-2">
           The page you're looking for doesn't exist.
         </p>
-        <Link
+        <PreloadLink
           href="/"
           className="bg-brand-primary text-brand-white hover:bg-brand-primaryHover mt-6 inline-block rounded-lg px-6 py-3 transition-colors"
         >
           Go Home
-        </Link>
+        </PreloadLink>
       </div>
     </div>
   );
