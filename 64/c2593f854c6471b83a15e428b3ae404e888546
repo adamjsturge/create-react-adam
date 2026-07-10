@@ -1,0 +1,25 @@
+scripts/verify-scaffold.mjs
+  s_0e0863910b37f6::t_8bdd03a01c2587 1-153
+.gitignore
+  s_0e0863910b37f6::t_6730a578e066eb 8
+.github/workflows/scaffold-integrity.yml
+  s_0e0863910b37f6::t_625a3bcbc5f846 1-51,53-54,56-108,110-111,113-124
+  s_0e0863910b37f6::t_06dc9dd82b63a5 52,55
+  s_0e0863910b37f6::t_d3581b40c8c18b 109,112
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "64c2593f854c6471b83a15e428b3ae404e888546",
+  "prompts": {},
+  "sessions": {
+    "s_0e0863910b37f6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d4c50452-9bb4-43e2-bb7c-92a9777b04de",
+        "model": "claude-fable-5"
+      },
+      "human_author": "adamjsturge <adamjsturge@gmail.com>"
+    }
+  }
+}
