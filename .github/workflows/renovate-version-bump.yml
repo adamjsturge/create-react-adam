@@ -1,0 +1,50 @@
+name: Renovate Version Bump
+
+# When Renovate auto-merges a dependency update that changes what we publish
+# (the root package.json or anything under template/), bump the patch version
+# and trigger the publish workflow so the update actually ships to npm.
+#
+# The explicit `gh workflow run` at the end is required: pushes made with the
+# workflow's GITHUB_TOKEN never trigger other workflows (GitHub's recursion
+# guard), so publish.yml would not fire on the bump commit by itself.
+# workflow_dispatch is the documented exception to that guard.
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "package.json"
+      - "template/**"
+
+concurrency:
+  group: renovate-version-bump
+
+jobs:
+  bump-and-publish:
+    if: github.actor == 'renovate[bot]'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # Check out the branch head (not the triggering SHA) so the bump
+          # lands on top of anything merged since this run was queued.
+          ref: main
+
+      - name: Bump patch version and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          npm version patch --no-git-tag-version
+          VERSION=$(node -p "require('./package.json').version")
+          git add package.json package-lock.json
+          git commit -m "Bump version to ${VERSION} for Renovate dependency update"
+          git push origin main
+
+      - name: Trigger publish workflow
+        run: gh workflow run publish.yml --ref main
+        env:
+          GH_TOKEN: ${{ github.token }}

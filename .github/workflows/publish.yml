@@ -10,6 +10,11 @@ on:
 
 jobs:
   build:
+    # Renovate merges touch package.json without bumping the version, which
+    # would make this publish fail on a duplicate version. For those pushes,
+    # renovate-version-bump.yml bumps the version first and then dispatches
+    # this workflow.
+    if: github.actor != 'renovate[bot]'
     runs-on: ubuntu-latest
     permissions:
       contents: read

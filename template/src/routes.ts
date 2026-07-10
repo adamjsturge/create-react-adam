@@ -40,10 +40,14 @@ export const routeImports: Record<string, PageLoader> = {
 export function preloadRoute(path: string): void {
   const load = routeImports[path];
   if (!load) return;
-  load().catch(() => {
-    // Preloading is opportunistic: if it fails (offline, a deploy replaced
-    // the chunk), the real import on navigation will surface the error.
-  });
+  void (async () => {
+    try {
+      await load();
+    } catch {
+      // Preloading is opportunistic: if it fails (offline, a deploy replaced
+      // the chunk), the real import on navigation will surface the error.
+    }
+  })();
 }
 
 let hasStartedIdlePreload = false;
@@ -64,10 +68,10 @@ export function preloadAllRoutesWhenIdle(): void {
 
   // Safari has no requestIdleCallback; a timeout is a close-enough stand-in.
   const scheduleIdle = (callback: () => void): void => {
-    if (typeof window.requestIdleCallback === "function") {
-      window.requestIdleCallback(callback);
+    if (typeof globalThis.requestIdleCallback === "function") {
+      globalThis.requestIdleCallback(callback);
     } else {
-      window.setTimeout(callback, 1500);
+      globalThis.setTimeout(callback, 1500);
     }
   };
 
