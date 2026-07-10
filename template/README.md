@@ -95,7 +95,7 @@ and string literals. Convert images to WebP at
 For the rare image that must stay in another format:
 
 ```tsx
-// eslint-disable-next-line adam/prefer-webp-images
+// eslint-disable-next-line adamjsturge/prefer-webp-images
 import legacyLogo from "./legacy-logo.png";
 ```
 
