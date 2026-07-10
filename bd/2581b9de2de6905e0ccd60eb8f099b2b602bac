@@ -1,0 +1,39 @@
+package.json
+  h_f6cc9af9c0f13a 3
+.github/workflows/renovate-version-bump.yml
+  s_516f2880c6c8da::t_ac7b77359172b3 1-50
+template/src/routes.ts
+  s_b9d3713b7eaacf::t_162b118aceb31f 43-50
+  s_b9d3713b7eaacf::t_8b90bf2c5dcb19 71-72,74
+.github/workflows/publish.yml
+  s_516f2880c6c8da::t_bcaa1b645b988f 13-17
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "bd2581b9de2de6905e0ccd60eb8f099b2b602bac",
+  "prompts": {},
+  "humans": {
+    "h_f6cc9af9c0f13a": {
+      "author": "adamjsturge <adamjsturge@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_516f2880c6c8da": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "89a67489-3fff-4c16-83e9-0e00526d6ec4",
+        "model": "claude-fable-5"
+      },
+      "human_author": "adamjsturge <adamjsturge@gmail.com>"
+    },
+    "s_b9d3713b7eaacf": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e6dc81a2-d734-4138-a5b5-360b68d898b3",
+        "model": "claude-fable-5"
+      },
+      "human_author": "adamjsturge <adamjsturge@gmail.com>"
+    }
+  }
+}
