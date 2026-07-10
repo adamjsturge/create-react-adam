@@ -1,10 +1,16 @@
+import { useEffect } from "react";
 import { Link } from "wouter";
+import Button from "../../components/Button";
 import { useReactPersist } from "../../utils/Storage";
 import { useUrlState } from "../../utils/useUrlState";
 
 const About = () => {
   const [sharedCount, setSharedCount] = useReactPersist("sharedCounter", 0);
   const [urlCount, setUrlCount] = useUrlState("counter", 0);
+
+  useEffect(() => {
+    document.title = "About | __PROJECT_NAME__";
+  }, []);
 
   return (
     <div className="bg-brand-background flex min-h-screen flex-col items-center justify-center">
@@ -26,21 +32,23 @@ const About = () => {
               This counter is shared between Home and About pages
             </p>
             <div className="flex items-center justify-center gap-4">
-              <button
+              <Button
+                variant="danger"
+                aria-label="Decrease shared counter"
                 onClick={() => setSharedCount(sharedCount - 1)}
-                className="bg-brand-danger text-brand-white hover:bg-brand-danger/90 rounded-lg px-4 py-2 transition-colors"
               >
                 -
-              </button>
+              </Button>
               <span className="text-brand-black text-3xl font-bold">
                 {sharedCount}
               </span>
-              <button
+              <Button
+                variant="success"
+                aria-label="Increase shared counter"
                 onClick={() => setSharedCount(sharedCount + 1)}
-                className="bg-brand-success text-brand-white hover:bg-brand-success/90 rounded-lg px-4 py-2 transition-colors"
               >
                 +
-              </button>
+              </Button>
             </div>
           </div>
 
@@ -52,21 +60,23 @@ const About = () => {
               This counter syncs with URL parameters
             </p>
             <div className="flex items-center justify-center gap-4">
-              <button
+              <Button
+                variant="danger"
+                aria-label="Decrease URL counter"
                 onClick={() => setUrlCount(urlCount - 1)}
-                className="bg-brand-danger text-brand-white hover:bg-brand-danger/90 rounded-lg px-4 py-2 transition-colors"
               >
                 -
-              </button>
+              </Button>
               <span className="text-brand-black text-3xl font-bold">
                 {urlCount}
               </span>
-              <button
+              <Button
+                variant="success"
+                aria-label="Increase URL counter"
                 onClick={() => setUrlCount(urlCount + 1)}
-                className="bg-brand-success text-brand-white hover:bg-brand-success/90 rounded-lg px-4 py-2 transition-colors"
               >
                 +
-              </button>
+              </Button>
             </div>
           </div>
         </div>

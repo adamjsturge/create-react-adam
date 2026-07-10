@@ -5,3 +5,5 @@ node_modules/
 /template/dist/
 /template/package-lock.json
 /template/e2e/node_modules/
+
+.DS_Store

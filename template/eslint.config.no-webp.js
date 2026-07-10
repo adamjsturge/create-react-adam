@@ -8,7 +8,6 @@ import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import unicorn from "eslint-plugin-unicorn";
 import tseslint from "typescript-eslint";
-import adam from "./eslint-rules/prefer-webp-images.js";
 
 export default tseslint.config({
   extends: [
@@ -26,7 +25,6 @@ export default tseslint.config({
     "jsx-a11y": jsxA11y,
     "react-hooks": reactHooks,
     "react-refresh": reactRefresh,
-    adam,
   },
   languageOptions: {
     parserOptions: {
@@ -50,7 +48,6 @@ export default tseslint.config({
       "warn",
       { allowConstantExport: true },
     ],
-    "adam/prefer-webp-images": "error",
   },
   files: ["**/*.{ts,tsx}"],
   ignores: ["dist"],
