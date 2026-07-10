@@ -1,0 +1,93 @@
+template/src/pages/Home/index.tsx
+  s_0e0863910b37f6::t_8f0275c90007e7 1,3,11-14,34-36,40,44-46,50,62-64,68,72-74,78
+template/README.md
+  s_0e0863910b37f6::t_510bac4ad4863b 1,3,27-33,35,37-39,41,43-44,46-49,55-61,64-66,70,73,79-178
+  s_0e0863910b37f6::t_cd1f82352b1c84 179
+template/src/app.css
+  s_0e0863910b37f6::t_e716e60acb6e22 15-19,21-23,25,27
+  s_0e0863910b37f6::t_c425b59473375b 3-10,12-13,41-47
+template/src/utils/helpers.ts
+  s_0e0863910b37f6::t_58fe8ed0946721 1-21
+  s_0e0863910b37f6::t_2082006cd2b505 22
+template/eslint.config.no-webp.js
+  s_0e0863910b37f6::t_a0df8f78a68ad6 1-54
+template/src/components/Button.tsx
+  s_0e0863910b37f6::t_eec4861ffb7a23 1-27
+README.md
+  s_0e0863910b37f6::t_111295efd955fa 8,13-24,33-35,38,41-47,59-70,82-84,95,102-110,119,129,134-138,201-203,205,207-211,214,216-217,225,227-228,230
+template/src/utils/useUrlState.ts
+  s_0e0863910b37f6::t_e0de277080e458 7-14,21-25,28
+  s_0e0863910b37f6::t_7aa1d5d9267ada 15,38-39
+template/public/robots.txt
+  s_0e0863910b37f6::t_22313833a03c92 1-5
+template/src/utils/classNames.ts
+  s_0e0863910b37f6::t_25e06232ba46be 1-23
+template/src/pages/About/index.no-utils.tsx
+  s_0e0863910b37f6::t_fde3f3f1753b7c 1,5-8
+template/eslint.config.js
+  s_0e0863910b37f6::t_a033a396925309 11,29,53
+template/src/types/ui.ts
+  s_0e0863910b37f6::t_567561787e374f 1
+template/lighthouserc.json
+  s_0e0863910b37f6::t_292094e7dcc66b 1-17
+template/src/pages/NotFound/index.tsx
+  s_0e0863910b37f6::t_82647814cd7007 1,4-25,27-28
+template/.github/workflows/lighthouse.yml
+  s_0e0863910b37f6::t_a8ac3ea6d688e4 1-33
+bin/index.js
+  s_0e0863910b37f6::t_76b23dced69dbf 311-323
+  s_0e0863910b37f6::t_41ace90656629c 3,5-8,15-51,63,87-125,127,129-146,160,170,172,177,199,210-261,268,280,283-288,293-294,296-297,299-303,306-310,324,326-333,335-341,344,347-359,361-373,376-377,388-389,397
+  s_0e0863910b37f6::t_4b6aaac3f9515d 148-159,165-167
+  s_0e0863910b37f6::t_af3b9631619148 342-343,345-346
+  s_0e0863910b37f6::t_636c5e98f92f31 126,128
+  s_0e0863910b37f6::t_c28755978d7d82 147
+package.json
+  s_0e0863910b37f6::t_80a411a66400bd 44-46
+  s_0e0863910b37f6::t_101896ab08e1eb 3
+  s_0e0863910b37f6::t_0d1937d64b7814 11-14
+template/src/pages/About/index.tsx
+  s_0e0863910b37f6::t_e00f47c3933bd1 1,3,11-14,35-37,41,45-47,51,63-65,69,73-75,79
+template/src/pages/Home/index.no-utils.tsx
+  s_0e0863910b37f6::t_79155006ad8e2a 1,3,6-11,22,38-64
+  s_43bc48cec6a409::t_0143c95ecfbbc2 65
+template/src/App.tsx
+  s_0e0863910b37f6::t_b6fd9f2d89c22d 1,3-6,9-28
+.gitignore
+  h_f6cc9af9c0f13a 8-9
+template/index.html
+  s_0e0863910b37f6::t_d5635a5b1fca3e 6-9,11-24
+  s_0e0863910b37f6::t_8549cd955e2239 10
+template/eslint-rules/prefer-webp-images.js
+  s_0e0863910b37f6::t_476e6d31e1cad0 1-66
+package-lock.json
+  s_0e0863910b37f6::t_25aa78389874d7 1-80
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "81cd589606f642b9f514027b39369ee1667c9778",
+  "prompts": {},
+  "humans": {
+    "h_f6cc9af9c0f13a": {
+      "author": "adamjsturge <adamjsturge@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_0e0863910b37f6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d4c50452-9bb4-43e2-bb7c-92a9777b04de",
+        "model": "claude-fable-5"
+      },
+      "human_author": "adamjsturge <adamjsturge@gmail.com>"
+    },
+    "s_43bc48cec6a409": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1a225a6b-f329-43a1-aa19-f49fc027dd51",
+        "model": "claude-fable-5"
+      },
+      "human_author": "adamjsturge <adamjsturge@gmail.com>"
+    }
+  }
+}
