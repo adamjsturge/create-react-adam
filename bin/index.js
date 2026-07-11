@@ -32,6 +32,11 @@ const FEATURES = [
     id: 'webpLint',
     flag: 'webp-lint',
     label: 'ESLint rule: prefer WebP images'
+  },
+  {
+    id: 'pwa',
+    flag: 'pwa',
+    label: 'PWA (installable app + offline support via vite-plugin-pwa)'
   }
 ];
 
@@ -97,6 +102,8 @@ function printUsage() {
   console.log('  --no-lighthouse       Skip Lighthouse CI workflow');
   console.log('  --with-webp-lint      Include the prefer-webp-images ESLint rule');
   console.log('  --no-webp-lint        Skip the prefer-webp-images ESLint rule');
+  console.log('  --with-pwa            Include PWA support (installable, works offline)');
+  console.log('  --no-pwa              Skip PWA support');
 }
 
 async function resolveFeatures(flags) {
@@ -339,6 +346,22 @@ async function main() {
     }
     await rm(noWebpConfigPath);
 
+    // Resolve the vite config variant: the template's vite.config.ts is the
+    // PWA version (vite-plugin-pwa + web app manifest); vite.config.no-pwa.ts
+    // is the plain version used when the PWA feature is skipped. When PWA is
+    // off, also drop the now-unused vite-plugin-pwa devDependency so it never
+    // gets installed.
+    const noPwaConfigPath = join(projectPath, 'vite.config.no-pwa.ts');
+    if (!features.pwa) {
+      await copyFile(noPwaConfigPath, join(projectPath, 'vite.config.ts'));
+
+      const pkgPath = join(projectPath, 'package.json');
+      const pkg = JSON.parse(await readFile(pkgPath, 'utf-8'));
+      delete pkg.devDependencies['vite-plugin-pwa'];
+      await writeFile(pkgPath, `${JSON.stringify(pkg, null, 2)}\n`, 'utf-8');
+    }
+    await rm(noPwaConfigPath);
+
     // README.md uses {{PROJECT_NAME}} because Prettier's markdown formatter
     // rewrites __PROJECT_NAME__ (underscore emphasis) to **PROJECT_NAME**.
     const replacements = {
@@ -350,6 +373,9 @@ async function main() {
       'package.json',
       'index.html',
       'README.md',
+      // vite.config.ts only has placeholders in its PWA variant (the web app
+      // manifest name); replacing is a harmless no-op otherwise.
+      'vite.config.ts',
       join('src', 'pages', 'Home', 'index.tsx'),
       join('src', 'pages', 'About', 'index.tsx'),
       join('src', 'pages', 'NotFound', 'index.tsx')
@@ -393,6 +419,13 @@ async function main() {
     console.log('    Opens Playwright UI mode.\n');
     console.log('  npm run test:e2e:report');
     console.log('    Generates and opens Allure report.\n');
+  }
+
+  if (features.pwa) {
+    console.log(
+      'PWA support is on: production builds generate a service worker and web' +
+        '\napp manifest (configured in vite.config.ts); dev mode is unaffected.\n'
+    );
   }
 
   console.log('We suggest that you begin by typing:\n');

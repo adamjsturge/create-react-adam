@@ -19,6 +19,7 @@ Running without flags opens an interactive wizard where you pick features
 │ ◼ Utility functions (classNames, Storage, useUrlState, safeTimeout)
 │ ◼ Lighthouse CI workflow (a11y/SEO/performance budgets)
 │ ◼ ESLint rule: prefer WebP images
+│ ◼ PWA (installable app + offline support via vite-plugin-pwa)
 └
 ```
 
@@ -42,8 +43,9 @@ Running without flags opens an interactive wizard where you pick features
 - `--with-utils` / `--no-utils` - Include or skip utility functions
 - `--with-lighthouse` / `--no-lighthouse` - Include or skip the Lighthouse CI workflow
 - `--with-webp-lint` / `--no-webp-lint` - Include or skip the prefer-webp-images ESLint rule
+- `--with-pwa` / `--no-pwa` - Include or skip PWA support (installable, works offline)
 
-Any feature answered by a flag is removed from the wizard; if all four are
+Any feature answered by a flag is removed from the wizard; if all five are
 answered, the wizard is skipped entirely.
 
 ## What's Included
@@ -67,7 +69,7 @@ Every generated project starts with:
   idle prefetcher warms the rest after first paint (documented in the
   generated README, easy to remove)
 - **SEO-ready `index.html`** - meta description, Open Graph and Twitter card
-  tags, theme-color, plus a `public/robots.txt`
+  tags, theme-color, an SVG favicon, plus a `public/robots.txt`
 - **Accessible shell** - skip-to-content link, `<main>` landmark, visible
   `:focus-visible` styles, and per-route document titles
 
@@ -101,6 +103,22 @@ When you include E2E testing (via wizard or `--with-e2e` flag), you get:
 - **Allure Reports** - Beautiful, detailed test reports
 - Pre-configured test setup with example tests
 - HTML reports and Allure integration
+
+### Optional PWA Support
+
+When you include PWA support (via wizard or `--with-pwa` flag), the app
+becomes an installable Progressive Web App:
+
+- **vite-plugin-pwa** configured in `vite.config.ts`, with comments explaining
+  every option
+- Production builds generate a precaching service worker (`dist/sw.js`) and a
+  web app manifest (`dist/manifest.webmanifest`); the registration script is
+  injected into `index.html` automatically
+- The app shell (JS, CSS, HTML, SVG, fonts) works offline after the first
+  visit, and client-side routes fall back to the cached `index.html`
+- `registerType: "autoUpdate"` means new deployments replace the old service
+  worker automatically — no "refresh to update" prompt
+- Dev mode is unchanged: the service worker only exists in production builds
 
 ### Git Integration
 
@@ -202,6 +220,7 @@ Runs basic troubleshooting checks:
 ```
 my-app/
 ├── public/
+│   ├── favicon.svg     # App icon (also used by the PWA manifest)
 │   ├── fonts/          # Self-hosted Inter (variable woff2)
 │   └── robots.txt
 ├── src/

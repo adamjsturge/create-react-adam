@@ -6,7 +6,8 @@
 //
 // Usage: node scripts/verify-scaffold.mjs <appDir> <full|bare>
 //   full = scaffolded with --yes (every feature on)
-//   bare = scaffolded with --no-e2e --no-utils --no-lighthouse --no-webp-lint
+//   bare = scaffolded with --no-e2e --no-utils --no-lighthouse
+//          --no-webp-lint --no-pwa
 
 import { existsSync, readFileSync } from 'fs';
 import { basename, join, resolve } from 'path';
@@ -77,6 +78,7 @@ const COMMON_PRESENT = [
   'src/pages/Home/index.tsx',
   'src/pages/About/index.tsx',
   'src/pages/NotFound/index.tsx',
+  'public/favicon.svg',
   'public/fonts/InterVariable.woff2',
   'public/robots.txt',
   '.github/workflows/check.yml'
@@ -87,6 +89,7 @@ const COMMON_ABSENT = [
   'gitignore',
   'npmrc',
   'eslint.config.no-webp.js',
+  'vite.config.no-pwa.ts',
   'src/pages/Home/index.no-utils.tsx',
   'src/pages/About/index.no-utils.tsx',
   '.DS_Store'
@@ -116,12 +119,20 @@ if (combo === 'full') {
   FEATURE_FILES.forEach(present);
   absent('e2e/gitignore');
   contains('eslint.config.js', 'adamjsturge/prefer-webp-images');
+  // PWA on: vite config uses the plugin and the manifest carries the app
+  // name; the dependency must be installed.
+  contains('vite.config.ts', 'VitePWA');
+  contains('vite.config.ts', `name: "${appName}"`);
+  contains('package.json', '"vite-plugin-pwa"');
 } else {
   FEATURE_FILES.forEach(absent);
   absent('e2e');
   absent('src/utils');
   absent('eslint-rules');
   lacks('eslint.config.js', 'adamjsturge');
+  // PWA off: no trace of the plugin in the vite config or dependencies.
+  lacks('vite.config.ts', 'VitePWA');
+  lacks('package.json', 'vite-plugin-pwa');
 }
 
 // --- Placeholder replacement
@@ -129,6 +140,7 @@ const REPLACED_FILES = [
   'package.json',
   'index.html',
   'README.md',
+  'vite.config.ts',
   'src/pages/Home/index.tsx',
   'src/pages/About/index.tsx',
   'src/pages/NotFound/index.tsx'
