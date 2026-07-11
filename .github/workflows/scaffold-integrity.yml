@@ -29,7 +29,7 @@ jobs:
           - combo: full
             flags: "--yes"
           - combo: bare
-            flags: "--no-e2e --no-utils --no-lighthouse --no-webp-lint"
+            flags: "--no-e2e --no-utils --no-lighthouse --no-webp-lint --no-pwa"
 
     steps:
       - uses: actions/checkout@v7
@@ -74,6 +74,31 @@ jobs:
       - name: Run build
         working-directory: tmp/app-${{ matrix.combo }}
         run: npm run build
+
+      # PWA on (full combo): the build must emit a service worker and a web
+      # app manifest, wire the manifest into index.html, and stamp the app
+      # name into it.
+      - name: PWA build artifacts exist
+        if: matrix.combo == 'full'
+        working-directory: tmp/app-full
+        run: |
+          test -f dist/sw.js
+          test -f dist/registerSW.js
+          test -f dist/manifest.webmanifest
+          grep -q "manifest.webmanifest" dist/index.html
+          grep -q "registerSW.js" dist/index.html
+          grep -q "app-full" dist/manifest.webmanifest
+
+      # PWA off (bare combo): the build must contain no service worker or
+      # manifest — the app behaves exactly as before the PWA feature existed.
+      - name: No PWA build artifacts
+        if: matrix.combo == 'bare'
+        working-directory: tmp/app-bare
+        run: |
+          test ! -e dist/sw.js
+          test ! -e dist/manifest.webmanifest
+          test ! -e dist/registerSW.js
+          ! grep -q "manifest.webmanifest" dist/index.html
 
       - name: WebP rule blocks non-WebP images
         if: matrix.combo == 'full'

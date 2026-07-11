@@ -122,9 +122,32 @@ location makes it smooth.
 - **Fonts**: Inter is self-hosted from `public/fonts/` (variable `woff2`,
   `font-display: swap`, preloaded in `index.html`). No third-party requests.
 - **SEO**: `index.html` ships meta description, Open Graph, and Twitter card
-  tags — update them as your app takes shape. `public/robots.txt` is included.
+  tags — update them as your app takes shape. `public/robots.txt` and an SVG
+  favicon (`public/favicon.svg`) are included.
 - **Accessibility**: a skip-to-content link, `<main>` landmark, and visible
   `:focus-visible` styles are wired into `App.tsx` / `app.css`.
+
+## PWA (if included)
+
+This app is a Progressive Web App: browsers offer an "Install" option, and
+the app keeps working offline after the first visit.
+
+- Everything is configured in `vite.config.ts` via
+  [vite-plugin-pwa](https://vite-pwa-org.netlify.app) — the web app manifest
+  (name, colors, icon) lives there too. Update it alongside the matching
+  values in `index.html` (`theme-color`) and `public/favicon.svg`.
+- `npm run build` generates the service worker (`dist/sw.js`) and manifest
+  (`dist/manifest.webmanifest`) and injects the registration script into
+  `index.html` — no client code to maintain.
+- The service worker precaches the app shell (JS, CSS, HTML, SVG, fonts) and
+  answers client-side routes with the cached `index.html` when offline.
+- Updates are automatic (`registerType: "autoUpdate"`): a new deployment
+  replaces the old service worker on the user's next visit.
+- Dev mode is unaffected — the service worker only exists in production
+  builds. Test it locally with `npm run build && npm run preview`.
+
+To remove PWA support later: delete the `VitePWA(...)` block and its import
+from `vite.config.ts`, then run `npm uninstall vite-plugin-pwa`.
 
 ## ESLint: prefer-webp-images (if included)
 
