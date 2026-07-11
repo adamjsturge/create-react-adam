@@ -1,0 +1,59 @@
+template/index.html
+  s_8aa108211c2093::t_812687e9121cd7 18
+bin/index.js
+  s_8aa108211c2093::t_d9c271a10d549b 35-39
+  s_8aa108211c2093::t_b2fdfc23a65f23 376-378
+  s_8aa108211c2093::t_8ca383ff6917c8 105-106
+  s_8aa108211c2093::t_1490559b6d4b6e 424-430
+  s_8aa108211c2093::t_a6594fb65a6ad7 349-364
+template/public/favicon.svg
+  s_8aa108211c2093::t_bd11cd523af061 1-9
+.github/workflows/scaffold-integrity.yml
+  s_8aa108211c2093::t_1b77406caa69f1 78-85,87-88,90-102
+  s_8aa108211c2093::t_2bf5d0918e2ff8 86,89
+  s_8aa108211c2093::t_b40f55deb43649 32
+README.md
+  s_8aa108211c2093::t_86c81a6dfc3f19 22
+  s_8aa108211c2093::t_91e45ed5f6d9fe 107-122
+  s_8aa108211c2093::t_63a9f952a0b9b4 223
+  s_8aa108211c2093::t_dbdc3995a19609 72
+  s_8aa108211c2093::t_9b2d72fb8ce251 46,48
+template/README.md
+  s_8aa108211c2093::t_196472076f9476 125-126,130-150
+  s_8aa108211c2093::t_92ada5c8e9d474 151
+template/vite.config.ts
+  s_8aa108211c2093::t_3a847595b9f232 4,6-12,14-55
+template/package.json
+  s_8aa108211c2093::t_fba48d5c50f8a0 49-50
+template/vite.config.no-pwa.ts
+  s_8aa108211c2093::t_160811f4b530bb 1-7
+package.json
+  h_f6cc9af9c0f13a 3
+scripts/verify-scaffold.mjs
+  s_8aa108211c2093::t_0064c87ca939a0 92
+  s_8aa108211c2093::t_ef64783e6241d3 81
+  s_8aa108211c2093::t_cc9243c3fbe24d 143
+  s_8aa108211c2093::t_a037b82f6e4638 122-126,133-135
+  s_8aa108211c2093::t_671e59749e01ad 9-10
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.12",
+  "base_commit_sha": "7f119cb4b04045fb013a3c0d181ac1fda4f1bebd",
+  "prompts": {},
+  "humans": {
+    "h_f6cc9af9c0f13a": {
+      "author": "adamjsturge <adamjsturge@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_8aa108211c2093": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6c7f564f-c0ac-4ed7-8f3d-88695c2b106e",
+        "model": "claude-fable-5"
+      },
+      "human_author": "adamjsturge <adamjsturge@gmail.com>"
+    }
+  }
+}
