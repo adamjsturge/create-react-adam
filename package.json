@@ -43,6 +43,6 @@
     "dev": "npm run cleanup && TIMESTAMP=$(date +%Y%m%d-%H%M%S) && npm link && cd ./tmp && npx create-react-adam test-app-$TIMESTAMP --with-e2e --with-utils && cd test-app-$TIMESTAMP && npm run dev"
   },
   "dependencies": {
-    "@clack/prompts": "1.7.0"
+    "@clack/prompts": "1.8.0"
   }
 }
